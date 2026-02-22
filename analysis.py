@@ -1,0 +1,42 @@
+# Healthcare Claims Data Analysis
+# Author: Anukriti Khanna
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Sample healthcare claims dataset
+data = {
+    'Patient_ID': range(1, 21),
+    'Procedure': [
+        'X-Ray', 'MRI', 'CT Scan', 'Blood Test', 'Surgery',
+        'X-Ray', 'MRI', 'CT Scan', 'Blood Test', 'Surgery',
+        'X-Ray', 'MRI', 'CT Scan', 'Blood Test', 'Surgery',
+        'X-Ray', 'MRI', 'CT Scan', 'Blood Test', 'Surgery'
+    ],
+    'Cost': [
+        200, 1500, 1200, 100, 5000,
+        250, 1600, 1100, 120, 5200,
+        230, 1550, 1250, 110, 5100,
+        240, 1580, 1300, 130, 5300
+    ]
+}
+
+df = pd.DataFrame(data)
+
+print("Dataset Preview:")
+print(df.head())
+
+print("\nCost Statistics:")
+print(df['Cost'].describe())
+
+cost_by_procedure = df.groupby('Procedure')['Cost'].mean()
+
+print("\nAverage Cost by Procedure:")
+print(cost_by_procedure)
+
+cost_by_procedure.plot(kind='bar')
+plt.title("Average Healthcare Cost by Procedure")
+plt.xlabel("Procedure")
+plt.ylabel("Average Cost")
+plt.show()
